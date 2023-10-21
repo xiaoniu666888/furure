@@ -21,17 +21,18 @@ const props = defineProps(['title'])
 }
 
 .header .rightText {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     color: #000;
 }
 
 .header .more {
     display: flex;
-    font-size: 16px;
+    font-size: 18px;
     align-items: center;
-    color: #4e4b4b;
+    color: #100f0f;
     padding-left: 300px;
+    cursor: pointer;
 }
 
 .header .more .text {

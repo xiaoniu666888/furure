@@ -24,7 +24,7 @@
             <Banner />
             <!-- <Nav /> -->
             <div class="title">
-                <Title title="热门歌单" />
+                <Title title="推荐MV" />
             </div>
             <div class="videoList">
                 <VideoList />
@@ -52,6 +52,7 @@ const ymd = new Date().toLocaleString().slice(0, 10).replace(/\//g, '-');
     /* 固定定位，确保背景图层叠在其他内容之上 */
     top: 0;
     width: 100%;
+    height: 100vh;
     // min-width: 50%;
     background: url("../../src/assets/imgs/bgImg.jpg") no-repeat center/cover;
     animation: slideDown .8s ease-in-out;
@@ -134,25 +135,23 @@ const ymd = new Date().toLocaleString().slice(0, 10).replace(/\//g, '-');
 
         .title {
             padding-top: 20px;
-
             box-sizing: border-box;
         }
 
         .videoList {
-            padding-top: 30px;
+            padding-top: 20px;
             box-sizing: border-box;
+            opacity: 1;
         }
     }
 
-
-
-
-    // 右下角图片
+    // 左下角图片
     .girlImg {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 15rem;
+        z-index: -10;
 
         .girl {
             width: 100%;

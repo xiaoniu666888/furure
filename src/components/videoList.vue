@@ -1,111 +1,56 @@
 <template>
     <div id="videoList">
-
         <div class="box" v-for="item in bannerList" :key="item.id">
-            <img class="img" :src="item.imgUrl" alt="">
+            <div class="imgBox">
+                <img class="img" :src="item.cover" alt="">
+                <div class="mvNum">
+                    <el-icon class="videoPlayIcon">
+                        <VideoPlay />
+                    </el-icon>
+                    <span class="playCount">{{ formatCount(item.playCount) }}</span>
+                    <span class="duration">{{ formatTime(item.mv.videos[0].duration / 1000) }}</span>
+                </div>
+                <div class="mvInfo">
+                    <span class="name">{{ item.name }} - {{ item.artistName }}</span>
+                </div>
+            </div>
         </div>
-
-
 
 
     </div>
 </template>
 
 <script setup>
-import { reactive } from 'vue'
-const bannerList = reactive([
-    {
-        id: 1,
-        imgUrl: 'https://api.likepoems.com/img/pc/',
-        path: '/test'
-    },
-    {
-        id: 2,
-        imgUrl: 'https://api.likepoems.com/img/pixiv/',
-        path: '/test2'
-    },
-    {
-        id: 3,
-        imgUrl: 'https://api.likepoems.com/img/bing/',
-        path: '/test'
-    },
-    {
-        id: 4,
-        imgUrl: 'https://api.likepoems.com/img/pe/',
-        path: '/test2'
-    },
-    {
-        id: 5,
-        imgUrl: 'https://api.likepoems.com/img/nature/',
-        path: '/test'
-    },
-    {
-        id: 6,
-        imgUrl: 'https://api.likepoems.com/img/mc/',
-        path: '/test2'
-    },
-    {
-        id: 7,
-        imgUrl: 'https://api.likepoems.com/img/pc/',
-        path: '/test'
-    },
-    {
-        id: 8,
-        imgUrl: 'https://api.likepoems.com/img/pixiv/',
-        path: '/test2'
-    },
-    {
-        id: 9,
-        imgUrl: 'https://api.likepoems.com/img/bing/',
-        path: '/test'
-    },
-    {
-        id: 10,
-        imgUrl: 'https://api.likepoems.com/img/pe/',
-        path: '/test2'
-    },
-    {
-        id: 11,
-        imgUrl: 'https://api.likepoems.com/img/nature/',
-        path: '/test'
-    },
-    {
-        id: 12,
-        imgUrl: 'https://api.likepoems.com/img/mc/',
-        path: '/test2'
-    },
-    {
-        id: 13,
-        imgUrl: 'https://api.likepoems.com/img/pe/',
-        path: '/test2'
-    },
-    {
-        id: 14,
-        imgUrl: 'https://api.likepoems.com/img/nature/',
-        path: '/test'
-    },
-    {
-        id: 15,
-        imgUrl: 'https://api.likepoems.com/img/mc/',
-        path: '/test2'
-    }
-])
+import { getTopMV } from '../api'
+import { reactive, onMounted, ref } from 'vue'
+import { formatCount, formatTime } from '../utils/format'
+const bannerList = ref([])
+
+onMounted(() => {
+    getMVInfoList()
+})
+
+// 获取mv信息
+const getMVInfoList = async () => {
+    const { data } = await getTopMV()
+    bannerList.value = data.data.slice(13, 17)
+    console.log(data.data[9]);
+    // console.log(data.data[9].mv.videos);
+}
 </script>
 
 <style lang="scss">
 #videoList {
     min-width: 100%;
-    min-height: 200px;
     display: grid;
-    background: #fff;
+    // background: #eee;
     margin: 0 auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .05);
+    // box-shadow: 0 0 20px rgba(0, 0, 0, .05);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 30px;
-    padding: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 50px;
     box-sizing: border-box;
-    opacity: .75;
+    opacity: 1;
 
     .box {
         // width: 100%;
@@ -115,11 +60,64 @@ const bannerList = reactive([
         justify-content: center;
         box-sizing: border-box;
 
-        .img {
+        .imgBox {
             width: 100%;
             height: 100%;
-            border-radius: 10px;
+
+            .img {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+            .mvNum {
+                position: relative;
+                top: -30px;
+                left: 0;
+                display: flex;
+                justify-content: space-between;
+                color: #fff;
+                padding: 0 12px;
+                box-sizing: border-box;
+                cursor: pointer;
+
+                .videoPlayIcon {
+                    margin-left: 0;
+                    margin-right: 10px;
+                }
+
+                .playCount {
+                    cursor: pointer;
+                    flex: 1;
+                }
+
+                .duration {
+                    cursor: pointer;
+                }
+            }
+
+            .mvInfo {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 2px 10px 0 0;
+                box-sizing: border-box;
+
+                .name {
+                    font-weight: 600;
+                    // /* 让文本不换行 */
+                    // white-space: nowrap;
+                    // /* 超出部分隐藏 */
+                    // overflow: hidden;
+                    // /* 显示省略号 */
+                    // text-overflow: ellipsis;
+
+                }
+            }
+
         }
+
 
 
     }
