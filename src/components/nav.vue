@@ -8,6 +8,11 @@
             <span class="select">歌手</span>
             <span class="select">新碟上架</span>
         </div>
+        <el-icon>
+            <Operation style="vertical-align: middle;" />
+        </el-icon>
+
+
     </div>
 </template>
 
@@ -15,48 +20,52 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #nav {
-    background-color: #98BFD6;
-    height: 40px;
-    padding-left: 300px;
+    background-color: #B6262F;
     color: rgb(242, 243, 247);
+    box-sizing: border-box;
+    opacity: .9;
+    z-index: 10;
+    padding: 5px 0;
     display: flex;
     align-items: center;
-    box-sizing: border-box;
-    opacity: .8;
-    z-index: 10;
+    justify-content: space-between;
+
 
     .navList {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
+        padding-left: 30%;
+        box-sizing: border-box;
+
 
         .select {
-            margin-left: 50px;
+
+            margin-left: 40px;
             cursor: pointer;
             transition: all .6s;
 
         }
 
         .select:hover {
-            color: rgb(235, 145, 135);
+            color: #EDEEDB;
             outline-width: 1px;
         }
 
-        .select:active {
-            transform: translate(10px, 10px);
-        }
-
         .active {
-            padding: 8px;
-            border-radius: 20%;
-            background-color: rgb(47, 175, 239);
+            padding: 10px;
+            background-color: #701B22;
             box-sizing: border-box;
         }
 
 
     }
 
+}
+
+.el-icon {
+    margin-right: 25px;
 }
 </style>

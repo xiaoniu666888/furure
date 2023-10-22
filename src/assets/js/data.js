@@ -30,3 +30,6 @@ export const bannerList = [
         path: '/test2'
     },
 ]
+export const oneMiddleList = ['流行', '电子', '古风', '戏曲']
+export const twoMiddleList = ['乡村振兴', '数字藏品', '教学直播']
+export const threeMiddleList = ['推荐', '收藏', '关注'] 
