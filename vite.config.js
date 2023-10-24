@@ -17,7 +17,7 @@ export default defineConfig({
     cors: true,
     proxy: {
       '/api': {
-        target: "http://codercba.com:9000",
+        target: "http://codercba.com:9002",
         changeOrigin: true,//开启跨域
         rewrite: path => path.replace(/^\/api/, ''),//去除前缀api
 

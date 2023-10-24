@@ -3,10 +3,9 @@
         <div class="navList">
             <span class="select active">推荐</span>
             <span class="select">排行版</span>
-            <span class="select">歌单</span>
-            <span class="select">主播电台</span>
-            <span class="select">歌手</span>
-            <span class="select">新碟上架</span>
+            <span class="select">关注</span>
+            <span class="select">音乐人</span>
+            <span class="select">小视频</span>
         </div>
         <el-icon>
             <Operation style="vertical-align: middle;" />
@@ -43,7 +42,7 @@
 
         .select {
 
-            margin-left: 40px;
+            margin-left: 60px;
             cursor: pointer;
             transition: all .6s;
 

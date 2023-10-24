@@ -3,7 +3,8 @@
         <div class="header">
             <!-- 左边 -->
             <div class="leftTitle">
-                <img src="/titleIcon.jpg" style="; padding-right: 15px; vertical-align:  -18px;" alt="">
+                <img src="/logo.jpg" style="width: 50px; padding-right: 15px; vertical-align:  -15px;  border-radius: 10px"
+                    alt="">
                 <span class="rightText">{{ props.title }} </span>
             </div>
             <!-- 中间 -->

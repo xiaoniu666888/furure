@@ -2,8 +2,12 @@
     <div id="home">
         <!-- 顶部导航栏 -->
         <div class="nav font">
+            <img class="logo" src="/logo.jpg" style="width: 50px; border-radius: 10px;" alt="琴筝和鸣" title="琴筝和鸣">
+
             <div class="navTitle">
-                <router-link :to="{ path: '/' }">民族音樂</router-link>
+                <router-link :to="{ path: '/' }">
+                    民族音樂
+                </router-link>
             </div>
             <div class="navText font">
                 <span class="select active">发现音乐</span>
@@ -16,7 +20,9 @@
                     <Search style="width: 1em; height: 1em; vertical-align: middle;" />
                     <span style="vertical-align: middle"> 搜索 </span>
                 </span>
-                <span class="select">头像</span>
+                <span class="select">
+                    <img src="/avatar.jpg" style="width: 55px; margin-right: -100px; border-radius: 50%;" alt="">
+                </span>
             </div>
         </div>
 
@@ -44,8 +50,8 @@
             <div class=" titleThree">
                 <Title title="音乐列表" :middleList="threeMiddleList" :display="false" />
             </div>
-            <div class="videoList">
-                <VideoList />
+            <div class="musicList">
+                <musicList />
             </div>
         </div>
         <!-- 右下角图片 -->
@@ -56,11 +62,12 @@
 </template>
 
 <script setup>
-import Banner from '../components/banner.vue'
+import Banner from '@/components/banner.vue'
 import VideoList from '@/components/videoList.vue'
-import Title from '../components/title.vue'
-import Nav from '../components/nav.vue'
-import ImageList from '../components/imageList.vue'
+import Title from '@/components/title.vue'
+import Nav from '@/components/nav.vue'
+import ImageList from '@/components/imageList.vue'
+import musicList from '@/components/musicList.vue'
 import { oneMiddleList, twoMiddleList, threeMiddleList } from '../assets/js/data'
 </script>
 
@@ -91,7 +98,7 @@ import { oneMiddleList, twoMiddleList, threeMiddleList } from '../assets/js/data
     // 顶部导航栏
     .nav {
         height: 75px;
-        padding: 0 70px;
+        padding: 0 55px;
         color: #eee;
         box-sizing: border-box;
         background-color: #4E4639;
@@ -101,9 +108,14 @@ import { oneMiddleList, twoMiddleList, threeMiddleList } from '../assets/js/data
         align-items: center;
         justify-content: space-around;
 
+        .logo {
+            margin-left: -20px;
+        }
+
         .navTitle {
             font-size: 30px;
             cursor: pointer;
+            margin-left: -80px;
 
         }
 
@@ -134,9 +146,6 @@ import { oneMiddleList, twoMiddleList, threeMiddleList } from '../assets/js/data
                 background-color: #100805;
                 box-sizing: border-box;
             }
-
-
-
         }
     }
 
@@ -144,7 +153,6 @@ import { oneMiddleList, twoMiddleList, threeMiddleList } from '../assets/js/data
     .content {
         width: 100%;
         margin: 0 auto;
-        // opacity: .8;
         z-index: 10;
 
         .banner {
@@ -175,7 +183,7 @@ import { oneMiddleList, twoMiddleList, threeMiddleList } from '../assets/js/data
         .titleTwo {
             width: 90%;
             margin: 0 auto;
-            padding-top: 32%;
+            padding-top: 5%;
             box-sizing: border-box;
         }
 
@@ -192,6 +200,14 @@ import { oneMiddleList, twoMiddleList, threeMiddleList } from '../assets/js/data
             width: 90%;
             margin: 0 auto;
             box-sizing: border-box;
+        }
+
+        .musicList {
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 20px;
+            box-sizing: border-box;
+            opacity: 1;
         }
     }
 

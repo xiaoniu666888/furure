@@ -47,3 +47,14 @@ export function getMVRelated(id) {
         }
     })
 }
+// 获取热门歌单列表
+export function getSongMenuList(cat = "全部", limit = 6, offset = 0) {
+    return xnRequest.get({
+        url: '/top/playList',
+        data: {
+            cat,
+            limit,
+            offset
+        }
+    })
+}

@@ -1,44 +1,39 @@
 <template>
     <div id="video">
         <div class="videoList">
-            <div class="box" v-for="item in bannerList" :key="item.id">
+            <div class="box" v-for="item in musicList" :key="item.id">
                 <div class="imgBox">
-                    <img class="img" :src="item.cover" alt="">
+                    <img class="img" :src="item.coverImgUrl" alt="">
                     <div class="mvNum">
-                        <el-icon class="videoPlayIcon">
-                            <VideoPlay />
+                        <el-icon class="musicIcon">
+                            <Headset />
                         </el-icon>
                         <span class="playCount">{{ formatCount(item.playCount) }}</span>
-                        <span class="duration">{{ formatTime(item.mv.videos[0].duration / 1000) }}</span>
                     </div>
                     <div class="mvInfo">
-                        <span class="name">{{ item.name }} - {{ item.artistName }}</span>
+                        <span class="name">{{ item.name }} </span>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="rightImg">
-            <img class="img" src="/todayNews.jpg" alt="">
-
-            <img src="/study.jpg" style="width: 98%; margin-top: 100px;" alt="">
         </div>
     </div>
 </template>
 
 <script setup>
-import { getTopMV } from '../api'
+import { getSongMenuList } from '../api'
 import { reactive, onMounted, ref } from 'vue'
 import { formatCount, formatTime } from '../utils/format'
-const bannerList = ref([])
+const musicList = ref([])
 
 onMounted(() => {
-    getMVInfoList()
+    getSongList()
 })
 
 // 获取mv信息
-const getMVInfoList = async () => {
-    const { data } = await getTopMV()
-    bannerList.value = data.data.slice(13, 21)
+const getSongList = async () => {
+    const { data } = await getSongMenuList()
+    musicList.value = data.playlists.slice(0, 12)
+    console.log(data.playlists.slice(0, 12));
 }
 </script>
 
@@ -46,22 +41,14 @@ const getMVInfoList = async () => {
 #video {
     padding: 0 10px;
     box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
 
     .videoList {
-        // float: left;
-        width: 85%;
-        padding-right: 20px;
+        width: 100%;
         display: grid;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 55px;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 30px;
         box-sizing: border-box;
         opacity: 1;
-        z-index: 999;
 
         .box {
             display: flex;
@@ -75,7 +62,6 @@ const getMVInfoList = async () => {
 
                 .img {
                     width: 100%;
-                    height: 100%;
                     border-radius: 10px;
                     cursor: pointer;
                 }
@@ -87,26 +73,28 @@ const getMVInfoList = async () => {
                     display: flex;
                     justify-content: space-between;
                     color: #fff;
-                    padding: 0 12px;
+                    padding: 0 6px;
                     box-sizing: border-box;
                     cursor: pointer;
 
-                    .videoPlayIcon {
-                        margin-left: 0;
-                        margin-right: 10px;
-
+                    .musicIcon {
+                        cursor: pointer;
+                        border-radius: 10px;
+                        background-color: rgba(0, 0, 0, .5);
+                        padding: 6px;
                     }
 
                     .playCount {
+                        margin-left: auto;
                         cursor: pointer;
-                        flex: 1;
+                        padding: 6px;
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                        background-color: rgba(0, 0, 0, .5);
 
                     }
 
-                    .duration {
-                        cursor: pointer;
 
-                    }
                 }
 
                 .mvInfo {
@@ -118,13 +106,6 @@ const getMVInfoList = async () => {
 
                     .name {
                         font-weight: 600;
-                        // /* 让文本不换行 */
-                        // white-space: nowrap;
-                        // /* 超出部分隐藏 */
-                        // overflow: hidden;
-                        // /* 显示省略号 */
-                        // text-overflow: ellipsis;
-
                     }
                 }
 
@@ -136,8 +117,9 @@ const getMVInfoList = async () => {
 
     .rightImg {
         width: 15%;
-        display: flex;
-        flex-direction: column;
+        float: right;
+        z-index: 999;
+
 
         .img {
             width: 100%;

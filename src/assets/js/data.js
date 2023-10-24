@@ -11,7 +11,7 @@ export const bannerList = [
     },
     {
         id: 3,
-        imgUrl: 'https://api.likepoems.com/img/bing/',
+        imgUrl: '/banner/banner3.jpg',
         path: '/test'
     },
     {
